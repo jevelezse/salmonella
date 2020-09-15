@@ -179,185 +179,192 @@ blaEC.head(2)
 sample_blaEC = blaEC['name'].tolist()
 
 
-# In[32]:
+# In[29]:
 
 
 blaNDM = x1[6:9]
 blaNDM.append('name')
 
 
-# In[33]:
+# In[30]:
 
 
 blaNDM = ariba2[blaNDM]
 blaNDM.head(2)
 
 
-# In[34]:
+# In[31]:
 
 
 blaNDM = blaNDM[(blaNDM['blaNDM_-.ctg_cov'] > 10.0) & (blaNDM['blaNDM_-.assembled'] == 'yes')]
 blaNDM.head(2)
 
 
-# In[35]:
+# In[32]:
 
 
 sample_blaNDM = blaNDM['name'].tolist()
 
 
-# In[36]:
+# In[33]:
 
 
 blaOXA_10 = x1[9:12]
 blaOXA_10.append('name')
 
 
-# In[37]:
+# In[34]:
 
 
 blaOXA_10 = ariba2[blaOXA_10]
 blaOXA_10.head(2)
 
 
-# In[38]:
+# In[35]:
 
 
 blaOXA_10  = blaOXA_10[(blaOXA_10 ['blaOXA_-_10.ctg_cov'] > 10.0) & (blaOXA_10['blaOXA_-_10.assembled'] == 'yes')]
 blaOXA_10.head(2)
 
 
-# In[39]:
+# In[36]:
 
 
 sample_blaOXA_10 = blaOXA_10['name'].tolist()
 
 
-# In[40]:
+# In[37]:
 
 
 blaOXA_31 = x1[12:15]
 blaOXA_31.append('name')
 
 
-# In[41]:
+# In[38]:
 
 
 blaOXA_31 = ariba2[blaOXA_31]
 blaOXA_31.head(2)
 
 
-# In[42]:
+# In[39]:
 
 
 blaOXA_31 = blaOXA_31[(blaOXA_31['blaOXA_-_31.ctg_cov'] > 10.0) & (blaOXA_31['blaOXA_-_31.assembled'] == 'yes')]
 blaOXA_31.head(2)
 
 
-# In[43]:
+# In[40]:
 
 
 sample_blaOXA_31 = blaOXA_31['name'].tolist()
 
 
-# In[47]:
+# In[41]:
 
 
 blaOXA_35 = x1[15:18]
 blaOXA_35.append('name')
 
 
-# In[48]:
+# In[42]:
 
 
 blaOXA_35 = ariba2[blaOXA_35]
 blaOXA_35.head(2)
 
 
-# In[49]:
+# In[43]:
 
 
 blaOXA_35 = blaOXA_35[(blaOXA_35['blaOXA_-_35.ctg_cov'] > 10.0) & (blaOXA_35['blaOXA_-_35.assembled'] == 'yes')]
 blaOXA_35.head(2)
 
 
-# In[50]:
+# In[44]:
 
 
 sample_blaOXA_35 = blaOXA_35['name'].tolist()
 
 
-# In[51]:
+# In[45]:
 
 
 blaTEM = x1[18:-1]
 blaTEM.append('name')
 
 
-# In[52]:
+# In[46]:
 
 
 blaTEM = ariba2[blaTEM]
 blaTEM.head(2)
 
 
-# In[53]:
+# In[47]:
 
 
 blaTEM= blaTEM[(blaTEM['blaTEM_-.ctg_cov'] > 10.0) & (blaTEM['blaTEM_-.assembled'] == 'yes')]
 blaTEM.head(2)
 
 
-# In[54]:
+# In[48]:
 
 
 sample_blaTEM = blaTEM['name'].tolist()
 
 
-# In[55]:
+# In[49]:
 
 
 sample_blaOXA = sample_blaOXA_10 + sample_blaOXA_31 + sample_blaOXA_35
 
 
-# In[56]:
+# In[50]:
 
 
 total_samples = sample_blaAFM_1 + sample_blaEC + sample_blaNDM + sample_blaOXA + sample_blaTEM
 
 
-# In[57]:
+# In[51]:
 
 
 len(total_samples)
 
 
-# In[58]:
+# In[52]:
 
 
 samples_drop = list(set(total_samples))
 
 
-# In[59]:
+# In[53]:
 
 
 len(samples_drop)
 
 
-# In[63]:
+# In[54]:
 
 
 print('Total samples with cephalosporin or carbapenem resistance:', len(samples_drop))
 
 
-# In[60]:
+# In[55]:
 
 
 samples = pd.DataFrame({'blaAFM_1': pd.Series(sample_blaAFM_1,dtype=str), 'blaEC': pd.Series(sample_blaEC,dtype=str), 'blaNDM': pd.Series(sample_blaNDM,dtype=str), 'blaOXA': pd.Series(sample_blaOXA,dtype=str),
                         'blaTEM': pd.Series(sample_blaTEM,dtype=str)})
 
 
-# In[61]:
+# In[60]:
+
+
+print ('Total samples with cephalosporin or carbapenem resistance:')
+print(samples)
+
+
+# In[57]:
 
 
 samples.to_csv('samples.csv')
